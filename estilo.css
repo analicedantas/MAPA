@@ -21,6 +21,16 @@ form{
     border-radius: 10px;
 }
 
+#botao{
+    background-color: palegreen;
+    width: 10vw;
+    height: 5vh;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    margin-left: 75px;
+}
+
 #email{
     margin-top: 10px;
     width: 40vh;
