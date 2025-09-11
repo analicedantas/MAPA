@@ -32,63 +32,41 @@ if (isset($_POST['email'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MAPA</title>
-    <style>
-        body { font-family: Arial; background: #f4f4f9; text-align: center; padding-top: 80px; }
-        .form-box {
-            display: inline-block;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            width: 320px;
-        }
-        .form-box h2 { margin-top: 0; color: #333; }
-        .form-box input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        .form-box button {
-            width: 100%;
-            padding: 12px;
-            background: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .form-box button:hover { background: #0056b3; }
-        .erro {
-            color: red;
-            background: #ffe6e6;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 15px 0;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
 </head>
 <body>
-    <div class="form-box">
-        <h2>Login Administrativo</h2>
-
-        <?php if (!empty($erro)): ?>
-            <div class="erro"><?= htmlspecialchars($erro) ?></div>
-        <?php endif; ?>
-
-        <form method="POST">
-            <input type="email" name="email" placeholder="E-mail" required value="<?= htmlspecialchars($email ?? '') ?>">
-            <input type="password" name="senha" placeholder="Senha" required>
-            <button type="submit">Entrar</button>
-        </form>
+    <div class="container">
+        <div class="login-section">
+            <h2 style="color: rgba(22, 222, 215, 1);">MAPA</h2>
+            <form class="form d-flex flex-column" style="gap: 10px; width: 300px;">
+                    <input type="text" class="form-control" placeholder="Digite o seu e-mail:">
+                    <input type="password" class="form-control" placeholder="Digite a sua senha:">
+                    <button type="submit">Entrar</button>
+            </form>
+        </div>
+    <div class="design-section">
+        <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREzLjYtiM4VaXuDEUT8qfabKX7JlRnRPwAcQ&s">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis exercitationem itaque dolorum quo excepturi explicabo harum, dolor dolorem quas magni error molestiae animi quasi enim ea ullam deserunt! Pariatur, illum!</p>
     </div>
+    </div>
+    <style>
+        body{
+            background-color: rgba(18, 31, 31, 1);
+            display: flex;
+        }
+        .container{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
 </body>
 </html>
-
