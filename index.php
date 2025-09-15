@@ -30,7 +30,6 @@ if (isset($_POST['email'])) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,11 +42,12 @@ if (isset($_POST['email'])) {
 <body>
     <div class="container">
         <div class="login-section">
-            <h2 style="color: rgba(22, 222, 215, 1);">MAPA</h2>
-            <form class="form d-flex flex-column" style="gap: 10px; width: 300px;">
-                    <input type="text" class="form-control" placeholder="Digite o seu e-mail:">
-                    <input type="password" class="form-control" placeholder="Digite a sua senha:">
-                    <button type="submit">Entrar</button>
+            <h2 style="color: rgba(22, 222, 215, 1)">MAPA</h2>
+            <form>
+                <div class = "form-section">
+                    <label>E-mail</label>
+                    <input type = "text" name = "e-mail" placeholder = "Digite o seu e-mail: "></input>
+                </div>
             </form>
         </div>
     <div class="design-section">
@@ -59,14 +59,38 @@ if (isset($_POST['email'])) {
         body{
             background-color: rgba(18, 31, 31, 1);
             display: flex;
+
         }
+
         .container{
             display: flex;
-            justify-content: space-around;
             align-items: center;
             height: 100vh;
             width: 100vw;
         }
+
+        .login-section{
+            display: flex;
+            width: 50%;
+            height: 50%;
+        }
+
+        .design-section{
+        background-color: rgba(22, 222, 215, 1);
+        color: white;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .form d-flex flex-column{
+        background-color: pink;
+        display: flex;
+     
+    }
     </style>
 </body>
 </html>
