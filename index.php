@@ -77,6 +77,7 @@ if (isset($_POST['email'])) {
             display: flex;
             background-color: white;
             text-align: center;
+            
         }
 
         .design-section{
