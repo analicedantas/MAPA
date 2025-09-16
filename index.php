@@ -96,7 +96,6 @@ if (isset($_POST['email'])) {
  }
 
         .form-section{
-            justify-content: end;
             align-items: center;
             gap: 20px;
             padding-right: 50px;
@@ -106,3 +105,4 @@ if (isset($_POST['email'])) {
     </style>
 </body>
 </html>
+
