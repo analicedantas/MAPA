@@ -30,7 +30,6 @@ if (isset($_POST['email'])) {
     }
 }
 ?>
- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,6 +60,7 @@ if (isset($_POST['email'])) {
         </div>
     </div>
     <style>
+        
         body{
             background-color: rgba(18, 31, 31, 1);
             display: flex;
@@ -77,11 +77,10 @@ if (isset($_POST['email'])) {
         .login-section{
             display: flex;
             background-color: white;
-            text-align: center;
-            align-items: center;
             border-radius: 10px;
             height: 50vh;
             width: 40vh;
+            padding: auto;
             
         }
 
@@ -97,13 +96,10 @@ if (isset($_POST['email'])) {
  }
 
         .form-section{
-            margin: 25px;            
+        text-align: center;
+        align-items: center;
         }
 
-        button{
-            background-color: springgreen;
-            border-radius: 20px;
-        }
     </style>
 </body>
 </html>
