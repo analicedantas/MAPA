@@ -60,7 +60,7 @@ if (isset($_POST['email'])) {
         </div>
     </div>
     <style>
-        
+
         body{
             background-color: rgba(18, 31, 31, 1);
             display: flex;
@@ -96,8 +96,10 @@ if (isset($_POST['email'])) {
  }
 
         .form-section{
-        text-align: center;
-        align-items: center;
+        padding: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        gap: 10px;
         }
 
     </style>
