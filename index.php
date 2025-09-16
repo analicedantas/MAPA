@@ -31,78 +31,71 @@ if (isset($_POST['email'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <title>Document</title>
-</head>
-<body>
-         <div class="design-section">
-            <h1>Bem vindo ao MAPA</h1>
-        </div>
-    <div class="container">
-        <div class="login-section">
-            <form>
-                <div class="form-section">
-                        <h2 style="color:  rgba(0, 201, 194, 1);;">Login</h2>
-                        <input type="text" class="form-control" placeholder="Digite o seu e-mail: " aria-label="Username">
-                </div>
-                <div class="form-section">
-                        <input type="text" class="form-control" placeholder="Digite a sua senha: ">
-                </div>
-                <div class="form-section">
-                        <button type="submit" class="btn btn-primary">Entrar</button>
-        </div>
-                </form>
-        </div>
-    </div>
+    <title>MAPA - Login</title>
     <style>
-
-        body{
+        html, body {
+            height: 100%;
+        }
+        body {
+            min-height: 100vh;
             background-color: rgba(18, 31, 31, 1);
-            display: flex;
-
         }
-
-        .container{
+        .design-section {
+            background-color: rgba(0, 201, 194, 1);
+            color: white;
+            min-height: 40vh;
             display: flex;
-            align-items: center;
-            width: 50%;
             justify-content: center;
+            align-items: center;
         }
-
-        .login-section{
-            display: flex;
+        @media (min-width: 768px) {
+            .design-section {
+                min-height: 100vh;
+            }
+        }
+        .login-section {
             background-color: white;
             border-radius: 10px;
-            height: 50vh;
-            width: 40vh;
-            padding: auto;
-            
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            padding: 2rem;
+            width: 100%;
+            max-width: 350px;
+            margin: 2rem auto;
         }
-
-        .design-section{
-        background-color: rgba(0, 201, 194, 1);
-        color: white;
-        height: 100vh;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        width: 50%;
- }
-
-        .form-section{
-            flex-direction: row;
-            align-items: center;
-            gap: 20px;
-            padding-right: 50px;
-            padding-left: 50px;
-        }
-
     </style>
+</head>
+<body>
+    <div class="container-fluid min-vh-100">
+        <div class="row g-0 min-vh-100">
+            <div class="col-12 col-md-6 design-section">
+                <h1 class="text-center">Bem vindo ao MAPA</h1>
+            </div>
+            <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+                <div class="login-section">
+                    <form method="post">
+                        <h2 class="mb-4" style="color: rgba(0, 201, 194, 1);">Login</h2>
+                        <?php if (!empty($erro)): ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo $erro; ?>
+                            </div>
+                        <?php endif; ?>
+                        <div class="mb-3">
+                            <input type="text" name="email" class="form-control" placeholder="Digite o seu e-mail:" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" name="senha" class="form-control" placeholder="Digite a sua senha:" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
