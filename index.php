@@ -30,6 +30,7 @@ if (isset($_POST['email'])) {
     }
 }
 ?>
+   
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,20 +41,24 @@ if (isset($_POST['email'])) {
     <title>Document</title>
 </head>
 <body>
+         <div class="design-section">
+            <h1>Bem vindo ao MAPA</h1>
+        </div>
     <div class="container">
         <div class="login-section">
-            <h2 style="color: rgba(22, 222, 215, 1)">MAPA</h2>
             <form>
-                <div class = "form-section">
-                    <label>E-mail</label>
-                    <input type = "text" name = "e-mail" placeholder = "Digite o seu e-mail: "></input>
+                <div class="form-section">
+                        <h2 style="color:  rgba(0, 201, 194, 1);;">Login</h2>
+                        <input type="text" class="form-control" placeholder="Digite o seu e-mail: " aria-label="Username">
                 </div>
-            </form>
+                <div class="form-section">
+                        <input type="text" class="form-control" placeholder="Digite a sua senha: ">
+                </div>
+                <div class="form-section">
+                        <button type="submit" class="btn btn-primary">Entrar</button>
         </div>
-    <div class="design-section">
-        <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREzLjYtiM4VaXuDEUT8qfabKX7JlRnRPwAcQ&s">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis exercitationem itaque dolorum quo excepturi explicabo harum, dolor dolorem quas magni error molestiae animi quasi enim ea ullam deserunt! Pariatur, illum!</p>
-    </div>
+                </form>
+        </div>
     </div>
     <style>
         body{
@@ -65,32 +70,31 @@ if (isset($_POST['email'])) {
         .container{
             display: flex;
             align-items: center;
-            height: 100vh;
-            width: 100vw;
+            width: 50%;
         }
 
         .login-section{
             display: flex;
-            width: 50%;
-            height: 50%;
+            background-color: white;
+            text-align: center;
         }
 
         .design-section{
-        background-color: rgba(22, 222, 215, 1);
+        background-color: rgba(0, 201, 194, 1);
         color: white;
         height: 100vh;
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
+        width: 50%;
+ }
 
-    }
-
-    .form d-flex flex-column{
-        background-color: pink;
-        display: flex;
-     
-    }
+        .form-section{
+            margin: 25px;
+            
+        }
     </style>
 </body>
 </html>
+
