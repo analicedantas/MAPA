@@ -66,7 +66,7 @@ if (isset($_POST['email'])) {
             box-shadow: 0 0 20px rgba(0,0,0,0.05);
             padding: 2rem;
             width: 100%;
-            height: 40vh;
+            height: 45vh;
             max-width: 350px;
             margin: 2rem auto;
             text-align: center;
