@@ -29,17 +29,15 @@ if (isset($_POST['email'])) {
     }
 }
 ?>
-   
+    
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <title>MAPA</title>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="css/estilo.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-	<script src="jquery-3.4.1.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>MAPA - Login</title>
     <style>
         html, body {
             height: 100%;
@@ -75,7 +73,7 @@ if (isset($_POST['email'])) {
         .btn.btn-primary {
             background-color: rgba(0, 201, 194, 1);
             margin-top: 10vh;
-            width: 50px;
+            width: 100px;
             border-radius: 3vh;
             border: none;
 }
