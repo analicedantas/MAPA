@@ -30,6 +30,7 @@ if (isset($_POST['email'])) {
     }
 }
 ?>
+    
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -80,11 +81,6 @@ if (isset($_POST['email'])) {
                 <div class="login-section">
                     <form method="post">
                         <h2 class="mb-4" style="color: rgba(0, 201, 194, 1);">Login</h2>
-                        <?php if (!empty($erro)): ?>
-                            <div class="alert alert-danger" role="alert">
-                                <?php echo $erro; ?>
-                            </div>
-                        <?php endif; ?>
                         <div class="mb-3">
                             <input type="text" name="email" class="form-control" placeholder="Digite o seu e-mail:" required>
                         </div>
