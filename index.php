@@ -43,10 +43,12 @@ if (isset($_POST['email'])) {
         html, body {
             height: 100%;
         }
+        
         body {
             min-height: 100vh;
             background-color: rgba(18, 31, 31, 1);
         }
+        
         .design-section {
             background-color: rgba(0, 201, 194, 1);
             color: white;
@@ -55,11 +57,13 @@ if (isset($_POST['email'])) {
             justify-content: center;
             align-items: center;
         }
+        
         @media (min-width: 768px) {
             .design-section {
                 min-height: 100vh;
             }
         }
+        
         .login-section {
             background-color: white;
             border-radius: 10px;
@@ -70,6 +74,10 @@ if (isset($_POST['email'])) {
             max-width: 350px;
             margin: 2rem auto;
             text-align: center;
+        }
+
+        .btn btn-primary w-100{
+            background-color: rgb(242, 172, 185);
         }
     </style>
 </head>
