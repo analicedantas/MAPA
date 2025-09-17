@@ -29,7 +29,7 @@ if (isset($_POST['email'])) {
     }
 }
 ?>
-    
+     
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -65,7 +65,7 @@ if (isset($_POST['email'])) {
             box-shadow: 0 0 20px rgba(0,0,0,0.05);
             padding: 2rem;
             width: 100%;
-            height: 40vh;
+            height: 45vh;
             max-width: 350px;
             margin: 2rem auto;
             text-align: center;
@@ -76,7 +76,17 @@ if (isset($_POST['email'])) {
             width: 100px;
             border-radius: 3vh;
             border: none;
-}
+        }
+        .mb-3 input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            margin-top: 1vh;
+            box-sizing: border-box;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s ease;
+            
+        }
     </style>
 </head>
 <body>
