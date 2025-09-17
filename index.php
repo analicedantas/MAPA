@@ -74,7 +74,7 @@ if (isset($_POST['email'])) {
         .btn.btn-primary {
             background-color: rgba(0, 201, 194, 1);
             margin-top: 10vh;
-            width: 100px;
+            width: 50px;
             border-radius: 3vh;
             border: none;
 }
