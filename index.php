@@ -31,6 +31,7 @@ if (isset($_POST['email'])) {
 }
 ?>
     
+  
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -43,41 +44,37 @@ if (isset($_POST['email'])) {
         html, body {
             height: 100%;
         }
-        
         body {
             min-height: 100vh;
             background-color: rgba(18, 31, 31, 1);
         }
-        
         .design-section {
             background-color: rgba(0, 201, 194, 1);
             color: white;
-            min-height: 45vh;
+            min-height: 40vh;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        
         @media (min-width: 768px) {
             .design-section {
                 min-height: 100vh;
             }
         }
-        
         .login-section {
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0,0,0,0.05);
             padding: 2rem;
             width: 100%;
-            height: 45vh;
+            height: 40vh;
             max-width: 350px;
             margin: 2rem auto;
             text-align: center;
         }
-
-        button{
-            background-color: rgb(242, 172, 185);
+        .btn btn-primary w-100 {
+            background-color: rgba(0, 201, 194, 1);
+            border: none;
         }
     </style>
 </head>
