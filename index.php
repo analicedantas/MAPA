@@ -30,7 +30,7 @@ if (isset($_POST['email'])) {
     }
 }
 ?>
-    
+  
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -96,7 +96,7 @@ if (isset($_POST['email'])) {
                         <div class="mb-3">
                             <input type="password" name="senha" class="form-control" placeholder="Digite a sua senha:" required>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                        <button type="submit" class="btn btn-primary">Entrar</button>
                     </form>
                 </div>
             </div>
