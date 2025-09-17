@@ -76,7 +76,7 @@ if (isset($_POST['email'])) {
             text-align: center;
         }
 
-        .btn btn-primary w-100{
+        button{
             background-color: rgb(242, 172, 185);
         }
     </style>
