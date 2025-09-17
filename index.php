@@ -30,7 +30,7 @@ if (isset($_POST['email'])) {
     }
 }
 ?>
-  
+    
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -73,8 +73,8 @@ if (isset($_POST['email'])) {
         }
         .btn.btn-primary.w-100 {
             background-color: rgba(0, 201, 194, 1);
-            margin-top: 2vh;
-            width: 20px;
+            margin-top: 10vh;
+            width: 10px;
             border-radius: 3vh;
             border: none;
 }
