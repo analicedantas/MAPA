@@ -50,7 +50,7 @@ if (isset($_POST['email'])) {
         .design-section {
             background-color: rgba(0, 201, 194, 1);
             color: white;
-            min-height: 40vh;
+            min-height: 45vh;
             display: flex;
             justify-content: center;
             align-items: center;
