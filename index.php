@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Se já estiver logado, vai direto pro painel
 if (isset($_SESSION['logado']) && $_SESSION['logado'] === true) {
     header("Location: dashboard.php");
     exit();
