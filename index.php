@@ -37,7 +37,7 @@ if (isset($_POST['email'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <title>MAPA - Login</title>
+    <title>MAPA</title>
     <style>
         html, body {
             height: 100%;
@@ -63,29 +63,28 @@ if (isset($_POST['email'])) {
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0,0,0,0.05);
-            padding: 2rem;
+            padding: 2.5rem;
             width: 100%;
             height: 45vh;
             max-width: 350px;
             margin: 2rem auto;
             text-align: center;
+            
         }
         .btn.btn-primary {
             background-color: rgba(0, 201, 194, 1);
-            margin-top: 10vh;
+            margin-top: 5vh;
             width: 100px;
             border-radius: 3vh;
             border: none;
         }
-        .mb-3 input {
+        .mb-5 input {
             width: 100%;
             padding: 10px;
             font-size: 1rem;
             margin-top: 1vh;
             box-sizing: border-box;
             box-shadow: 0 0 5px rgba(0,0,0,0.1);
-            transition: box-shadow 0.3s ease;
-            
         }
     </style>
 </head>
@@ -93,16 +92,16 @@ if (isset($_POST['email'])) {
     <div class="container-fluid min-vh-100">
         <div class="row g-0 min-vh-100">
             <div class="col-12 col-md-6 design-section">
-                <h1 class="text-center">Bem vindo ao MAPA</h1>
+                <h1 class="text-center">Bem vindo ao MAPA!</h1>
             </div>
             <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
                 <div class="login-section">
                     <form method="post">
                         <h2 class="mb-4" style="color: rgba(0, 201, 194, 1);">Login</h2>
-                        <div class="mb-3">
+                        <div class="mb-5">
                             <input type="text" name="email" class="form-control" placeholder="Digite o seu e-mail:" required>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-5">
                             <input type="password" name="senha" class="form-control" placeholder="Digite a sua senha:" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Entrar</button>
