@@ -29,7 +29,7 @@ if (isset($_POST['email'])) {
     }
 }
 ?>
-    
+     
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -45,7 +45,7 @@ if (isset($_POST['email'])) {
 
         body {
             min-height: 100vh;
-            background-color: rgb(252, 252, 252);
+            background-color: rgb(245, 245, 245);
         }
 
         .design-section {
