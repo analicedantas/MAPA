@@ -45,13 +45,12 @@ if (isset($_POST['email'])) {
 
         body {
             min-height: 100vh;
-            background-color: rgba(18, 31, 31, 1);
+            background-color: rgb(252, 252, 252);
         }
 
         .design-section {
             background: linear-gradient(135deg, rgb(0, 255, 229) 20%, rgb(0, 199, 192)  60%);
             color: white;
-            min-height: 40vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -92,19 +91,27 @@ if (isset($_POST['email'])) {
             box-sizing: border-box;
             box-shadow: 0 0 5px rgba(0,0,0,0.1);
         }
-       
+
+       .col-12.col-md-6.design-section{
+        color: white;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+       }
+
+       .mb-4{
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+       }
     </style>
 </head>
 <body>
     <div class="container-fluid min-vh-100">
         <div class="row g-0 min-vh-100">
             <div class="col-12 col-md-6 design-section">
-                <h1 class="text-center">Bem vindo ao MAPA!</h1>
+                <h1 class="text-center">Bem vindo(a) ao MAPA!</h1>
             </div>
             <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
                 <div class="login-section">
                     <form method="post">
-                        <h2 class="mb-4" style="color: rgba(0, 201, 194, 1);">Login</h2>
+                        <h2 class="mb-4" style="color: rgba(0, 201, 194, 1);">LOGIN</h2>
                         <div class="mb-5">
                             <input type="text" name="email" class="form-control" placeholder="Digite o seu e-mail:" required>
                         </div>
