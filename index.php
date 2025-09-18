@@ -29,7 +29,7 @@ if (isset($_POST['email'])) {
     }
 }
 ?>
-      
+     
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -49,7 +49,7 @@ if (isset($_POST['email'])) {
         }
 
         .design-section {
-            background: linear-gradient(135deg, rgba(0, 201, 194, 1) 100%, #009688 40%);
+            background: linear-gradient(135deg, rgba(0, 201, 194, 1) 20%, #009688 100%);
             color: white;
             min-height: 40vh;
             display: flex;
