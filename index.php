@@ -1,34 +1,4 @@
-<?php
-session_start();
 
-if (isset($_SESSION['logado']) && $_SESSION['logado'] === true) {
-    header("Location: dashboard.php");
-    exit();
-}
-
-$erro = '';
-
-if (isset($_POST['email'])) {
-    $email = trim($_POST['email']);
-    $senha = $_POST['senha'];
-
-    if (!empty($email) && !empty($senha)) {
-        $email_valido = 'usuario@gmail.com';
-        $senha_valida = '123456';
-
-        if ($email === $email_valido && $senha === $senha_valida) {
-            $_SESSION['logado'] = true;
-            $_SESSION['email'] = $email;
-            header("Location: dashboard.php");
-            exit();
-        } else {
-            $erro = "E-mail ou senha incorretos.";
-        }
-    } else {
-        $erro = "Preencha todos os campos.";
-    }
-}
-?>
      
 <!DOCTYPE html>
 <html lang="pt">
