@@ -1,5 +1,35 @@
+<?php
+session_start();
 
-     
+require_once 'Usuario.php';
+$u = new Usuario();
+$erro = ""; // Inicializa a variável de erro
+
+if (isset($_POST['email'])) {
+    $email = trim($_POST['email']);
+    $senha = $_POST['senha'];
+
+    if (empty($email) || empty($senha)) {
+        $erro = "Preencha todos os campos!";
+    } else {
+        $u->conectar("login", "localhost", "root", "");
+
+        if ($u->msgErro != "") {
+            $erro = "Erro: " . $u->msgErro;
+        } else {
+            if ($u->logar($email, $senha)) {
+                $_SESSION['logado'] = true;
+                $_SESSION['email'] = $email;
+                header("Location: areaprivada.php");
+                exit(); // SEMPRE SAIA AQUI!
+            } else {
+                $erro = "Credenciais inválidas.";
+            }
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -19,7 +49,7 @@
         }
 
         .design-section {
-            background: linear-gradient(135deg, rgb(0, 255, 229) 20%, rgb(0, 199, 192)  60%);
+            background: linear-gradient(135deg, rgb(0, 255, 229) 20%, rgb(0, 199, 192) 60%);
             color: white;
             display: flex;
             justify-content: center;
@@ -42,7 +72,6 @@
             max-width: 350px;
             margin: 2rem auto;
             text-align: center;
-            
         }
 
         .btn.btn-primary {
@@ -73,6 +102,16 @@
        .mb-4{
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
        }
+
+       .msg-erro {
+            color: #d9534f;
+            background-color: #fdf2f2;
+            border: 1px solid #eed3d7;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-weight: bold;
+       }
     </style>
 </head>
 <body>
@@ -83,6 +122,9 @@
             </div>
             <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
                 <div class="login-section">
+                     
+                    <?php endif; ?>
+
                     <form method="post">
                         <h2 class="mb-4" style="color: rgba(0, 201, 194, 1);">LOGIN</h2>
                         <div class="mb-5">
