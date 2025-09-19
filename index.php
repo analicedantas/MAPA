@@ -3,7 +3,7 @@ session_start();
 
 require_once 'Usuario.php';
 $u = new Usuario();
-$erro = ""; // Inicializa a variável de erro
+$erro = ""; 
 
 if (isset($_POST['email'])) {
     $email = trim($_POST['email']);
@@ -21,7 +21,7 @@ if (isset($_POST['email'])) {
                 $_SESSION['logado'] = true;
                 $_SESSION['email'] = $email;
                 header("Location: areaprivada.php");
-                exit(); // SEMPRE SAIA AQUI!
+                exit(); 
             } else {
                 $erro = "Credenciais inválidas.";
             }
