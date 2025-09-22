@@ -1,6 +1,48 @@
-< ?php
+<?php
+  @session_start();
 
+  if (isset($_SESSION['logado']) && $_SESSION['logado'] == '2etapas') {
+    header('Location: 2etapas.php');
+    exit(0);
+  }else if(isset($_SESSION['logado']) && $_SESSION['logado'] == 'logado'){
+    header('Location: perfil.php');
+    exit(0);
+  }else{
+    if ($_POST) {
+      $usuarioQueSeLogou = $_POST['usuario'];
+      $senha = $_POST['senha'];
+
+      require_once 'conexao.php';
+
+      $resultado = mysqli_query($conexao, "SELECT * FROM usuarios WHERE usuario='$usuarioQueSeLogou'");
+
+      if ($resultado) {
+        $usuario = mysqli_fetch_assoc($resultado);
+
+        if ($usuario && password_verify($senha, $usuario['senha'])) {
+
+          $codigo = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'), -4);
+
+          $resultado = mysqli_query($conexao, "UPDATE usuarios SET codigo2etapas='$codigo' WHERE usuario='$usuarioQueSeLogou'");
+
+          if ($resultado) {
+          
+
+            $_SESSION['logado'] = '2etapas';
+            $_SESSION['usuario'] = $usuario['usuario'];
+
+            header('Location: 2etapas.php');
+            exit(0);
+          }
+        }
+      }
+    }
+  }
+
+
+  require_once 'header.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
