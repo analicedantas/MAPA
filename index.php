@@ -1,37 +1,5 @@
-<?php
-session_start();
-session_regenerate_id(true);
+< ?php
 
-require_once 'Usuario.php';
-$u = new Usuario();
-$erro = ""; 
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = trim($_POST['email'] ?? '');
-    $senha = $_POST['senha'] ?? '';
-
-    if (empty($email) || empty($senha)) {
-        $erro = "Preencha todos os campos!";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $erro = "Email inválido.";
-    } else {
-        $u->conectar("login", "localhost", "root", "sua_senha_segura_aqui");
-
-        if ($u->msgErro != "") {
-            error_log("Erro no banco: " . $u->msgErro); 
-            $erro = "Erro ao conectar. Tente novamente mais tarde.";
-        } else {
-            if ($u->logar($email, $senha)) {
-                $_SESSION['logado'] = true;
-                $_SESSION['email'] = $email;
-                header("Location: areaprivada.php");
-                exit();
-            } else {
-                $erro = "Credenciais inválidas.";
-            }
-        }
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt">
