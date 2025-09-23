@@ -43,6 +43,7 @@
   require_once 'header.php';
 ?>
 
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -81,7 +82,7 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.05);
             padding: 2.5rem;
             width: 100%;
-            height: 45vh;
+            height: 55vh;
             max-width: 350px;
             margin: 2rem auto;
             text-align: center;
@@ -136,7 +137,6 @@
             <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
                 <div class="login-section">
                      
-                    <?php endif; ?>
 
                     <form method="post">
                         <h2 class="mb-4" style="color: rgba(0, 201, 194, 1);">LOGIN</h2>
