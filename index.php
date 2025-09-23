@@ -3,12 +3,11 @@
   if (isset($_GET['mensagem'])){
     if ($_GET['mensagem']) {
       echo "<h5>Usuário cadastrado com sucesso! <a href='login.php'>Faça login</a></h5>";
-    }else{
-      echo "<h5>Erro ao cadastra o usuário!";
+    } else {
+      echo "<h5>Erro ao cadastrar o usuário!</h5>"; 
     }
   }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
