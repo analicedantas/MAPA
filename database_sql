@@ -12,7 +12,7 @@ CREATE TABLE medico(
     nome_medico VARCHAR(100),
     especialidade_medico VARCHAR(100),
     CPF_medico VARCHAR(11) UNIQUE,
-    CRM_medico VARCHAR(100) UNIQUE, 
+    CRM_medico VARCHAR(20) UNIQUE, 
     telefone_medico VARCHAR(11),
     endereco_medico VARCHAR(50)
 );
