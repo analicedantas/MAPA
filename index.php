@@ -1,3 +1,42 @@
+<?php
+session_start();
+
+if (isset($_SESSION['admin_logado']) && $_SESSION['admin_logado'] === true) {
+    header("Location: painel_admin.php");
+    exit;
+}
+
+require_once 'conexao.php'; 
+
+$erro = "";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $senha = $_POST['senha'] ?? '';
+
+    if (empty($email) || empty($senha)) {
+        $erro = "E-mail e senha são obrigatórios.";
+    } else {
+        $stmt = $pdo->prepare("SELECT id, nome, email, senha FROM administradores WHERE email = ?");
+        $stmt->execute([$email]);
+        $admin = $stmt->fetch();
+
+        if ($admin && password_verify($senha, $admin['senha'])) {
+            $_SESSION['admin_logado'] = true;
+            $_SESSION['admin_id'] = $admin['id'];
+            $_SESSION['admin_nome'] = $admin['nome'];
+            $_SESSION['admin_email'] = $admin['email'];
+
+            header("Location: painel_admin.php");
+            exit;
+        } else {
+            $erro = "E-mail ou senha inválidos.";
+        }
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
