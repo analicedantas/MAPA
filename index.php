@@ -1,13 +1,3 @@
-<?php
-  require_once 'header.php';
-  if (isset($_GET['mensagem'])){
-    if ($_GET['mensagem']) {
-      echo "<h5>Usuário cadastrado com sucesso! <a href='login.php'>Faça login</a></h5>";
-    } else {
-      echo "<h5>Erro ao cadastrar o usuário!</h5>"; 
-    }
-  }
-?>
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -39,6 +29,17 @@
                 min-height: 100vh;
             }
         }
+
+      <?php
+  require_once 'header.php';
+  if (isset($_GET['mensagem'])){
+    if ($_GET['mensagem']) {
+      echo "<h5>Usuário cadastrado com sucesso! <a href='login.php'>Faça login</a></h5>";
+    } else {
+      echo "<h5>Erro ao cadastrar o usuário!</h5>"; 
+    }
+  }
+?>
 
         .login-section {
             background-color: white;
