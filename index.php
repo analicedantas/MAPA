@@ -14,7 +14,6 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == '2etapas') {
 
         require_once 'conexao.php';
 
-        // ✅ LINHA ADICIONADA: Escapar entrada para evitar SQL Injection
         $usuarioEscapado = mysqli_real_escape_string($conexao, $usuarioQueSeLogou);
 
         $resultado = mysqli_query($conexao, "SELECT * FROM usuarios WHERE usuario='$usuarioEscapado'");
@@ -26,7 +25,6 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == '2etapas') {
 
                 $codigo = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'), -4);
 
-                // ✅ LINHA ADICIONADA: Escapar também o código (boa prática)
                 $codigoEscapado = mysqli_real_escape_string($conexao, $codigo);
 
                 $resultado = mysqli_query($conexao, "UPDATE usuarios SET codigo2etapas='$codigoEscapado' WHERE usuario='$usuarioEscapado'");
