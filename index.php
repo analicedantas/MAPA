@@ -1,41 +1,46 @@
 <?php
-session_start();
+  @session_start();
 
-if (isset($_SESSION['admin_logado']) && $_SESSION['admin_logado'] === true) {
-    header("Location: painel_admin.php");
-    exit;
-}
+  if (isset($_SESSION['logado']) && $_SESSION['logado'] == '2etapas') {
+    header('Location: 2etapas.php');
+    exit(0);
+  }else if(isset($_SESSION['logado']) && $_SESSION['logado'] == 'logado'){
+    header('Location: perfil.php');
+    exit(0);
+  }else{
+    if ($_POST) {
+      $usuarioQueSeLogou = $_POST['usuario'];
+      $senha = $_POST['senha'];
 
-require_once 'conexao.php'; 
+      require_once 'conexao.php';
 
-$erro = "";
+      $resultado = mysqli_query($conexao, "SELECT * FROM usuarios WHERE usuario='$usuarioQueSeLogou'");
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $senha = $_POST['senha'] ?? '';
+      if ($resultado) {
+        $usuario = mysqli_fetch_assoc($resultado);
 
-    if (empty($email) || empty($senha)) {
-        $erro = "E-mail e senha são obrigatórios.";
-    } else {
-        $stmt = $pdo->prepare("SELECT id, nome, email, senha FROM administradores WHERE email = ?");
-        $stmt->execute([$email]);
-        $admin = $stmt->fetch();
+        if ($usuario && password_verify($senha, $usuario['senha'])) {
 
-        if ($admin && password_verify($senha, $admin['senha'])) {
-            $_SESSION['admin_logado'] = true;
-            $_SESSION['admin_id'] = $admin['id'];
-            $_SESSION['admin_nome'] = $admin['nome'];
-            $_SESSION['admin_email'] = $admin['email'];
+          $codigo = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'), -4);
 
-            header("Location: painel_admin.php");
-            exit;
-        } else {
-            $erro = "E-mail ou senha inválidos.";
+          $resultado = mysqli_query($conexao, "UPDATE usuarios SET codigo2etapas='$codigo' WHERE usuario='$usuarioQueSeLogou'");
+
+          if ($resultado) {
+   
+            $_SESSION['logado'] = '2etapas';
+            $_SESSION['usuario'] = $usuario['usuario'];
+
+            header('Location: 2etapas.php');
+            exit(0);
+          }
         }
+      }
     }
-}
-?>
+  }
 
+
+  require_once 'header.php';
+?>
 
 <!DOCTYPE html>
 <html lang="pt">
