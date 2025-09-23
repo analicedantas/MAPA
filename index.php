@@ -30,17 +30,6 @@
             }
         }
 
-      <?php
-  require_once 'header.php';
-  if (isset($_GET['mensagem'])){
-    if ($_GET['mensagem']) {
-      echo "<h5>Usuário cadastrado com sucesso! <a href='login.php'>Faça login</a></h5>";
-    } else {
-      echo "<h5>Erro ao cadastrar o usuário!</h5>"; 
-    }
-  }
-?>
-
         .login-section {
             background-color: white;
             border-radius: 10px;
@@ -101,7 +90,19 @@
             </div>
             <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
                 <div class="login-section">
-                     
+
+                    
+      <?php
+  require_once 'header.php';
+  if (isset($_GET['mensagem'])){
+    if ($_GET['mensagem']) {
+      echo "<h5>Usuário cadastrado com sucesso! <a href='login.php'>Faça login</a></h5>";
+    } else {
+      echo "<h5>Erro ao cadastrar o usuário!</h5>"; 
+    }
+  }
+?>
+
 
                     <form method="post">
                         <h2 class="mb-4" style="color: rgba(0, 201, 194, 1);">LOGIN</h2>
