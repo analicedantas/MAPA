@@ -1,89 +1,49 @@
 <?php
-  @session_start();
+session_start();
 
-  if (isset($_SESSION['logado']) && $_SESSION['logado'] == '2etapas') {
+if (isset($_SESSION['logado']) && $_SESSION['logado'] == '2etapas') {
     header('Location: 2etapas.php');
     exit(0);
-  }else if(isset($_SESSION['logado']) && $_SESSION['logado'] == 'logado'){
+} else if (isset($_SESSION['logado']) && $_SESSION['logado'] == 'logado') {
     header('Location: perfil.php');
     exit(0);
-  }else{
+} else {
     if ($_POST) {
-      $usuarioQueSeLogou = $_POST['usuario'];
-      $senha = $_POST['senha'];
+        $usuarioQueSeLogou = $_POST['usuario'];
+        $senha = $_POST['senha'];
 
-      require_once 'conexao.php';
+        require_once 'conexao.php';
 
-      $resultado = mysqli_query($conexao, "SELECT * FROM usuarios WHERE usuario='$usuarioQueSeLogou'");
+        // ✅ LINHA ADICIONADA: Escapar entrada para evitar SQL Injection
+        $usuarioEscapado = mysqli_real_escape_string($conexao, $usuarioQueSeLogou);
 
-      if ($resultado) {
-        $usuario = mysqli_fetch_assoc($resultado);
+        $resultado = mysqli_query($conexao, "SELECT * FROM usuarios WHERE usuario='$usuarioEscapado'");
 
-        if ($usuario && password_verify($senha, $usuario['senha'])) {
+        if ($resultado) {
+            $usuario = mysqli_fetch_assoc($resultado);
 
-          $codigo = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'), -4);
+            if ($usuario && password_verify($senha, $usuario['senha'])) {
 
-          $resultado = mysqli_query($conexao, "UPDATE usuarios SET codigo2etapas='$codigo' WHERE usuario='$usuarioQueSeLogou'");
+                $codigo = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'), -4);
 
-          if ($resultado) {
-   
-            $_SESSION['logado'] = '2etapas';
-            $_SESSION['usuario'] = $usuario['usuario'];
+                // ✅ LINHA ADICIONADA: Escapar também o código (boa prática)
+                $codigoEscapado = mysqli_real_escape_string($conexao, $codigo);
 
-            header('Location: 2etapas.php');
-            exit(0);
-          }
+                $resultado = mysqli_query($conexao, "UPDATE usuarios SET codigo2etapas='$codigoEscapado' WHERE usuario='$usuarioEscapado'");
+
+                if ($resultado) {
+                    $_SESSION['logado'] = '2etapas';
+                    $_SESSION['usuario'] = $usuario['usuario'];
+
+                    header('Location: 2etapas.php');
+                    exit(0);
+                }
+            }
         }
-      }
     }
-  }
+}
 
-
-  require_once 'header.php';
-?>
-
-<?php
-  @session_start();
-
-  if (isset($_SESSION['logado']) && $_SESSION['logado'] == '2etapas') {
-    header('Location: 2etapas.php');
-    exit(0);
-  }else if(isset($_SESSION['logado']) && $_SESSION['logado'] == 'logado'){
-    header('Location: perfil.php');
-    exit(0);
-  }else{
-    if ($_POST) {
-      $usuarioQueSeLogou = $_POST['usuario'];
-      $senha = $_POST['senha'];
-
-      require_once 'conexao.php';
-
-      $resultado = mysqli_query($conexao, "SELECT * FROM usuarios WHERE usuario='$usuarioQueSeLogou'");
-
-      if ($resultado) {
-        $usuario = mysqli_fetch_assoc($resultado);
-
-        if ($usuario && password_verify($senha, $usuario['senha'])) {
-
-          $codigo = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'), -4);
-
-          $resultado = mysqli_query($conexao, "UPDATE usuarios SET codigo2etapas='$codigo' WHERE usuario='$usuarioQueSeLogou'");
-
-          if ($resultado) {
-   
-            $_SESSION['logado'] = '2etapas';
-            $_SESSION['usuario'] = $usuario['usuario'];
-
-            header('Location: 2etapas.php');
-            exit(0);
-          }
-        }
-      }
-    }
-  }
-
-
-  require_once 'header.php';
+require_once 'header.php';
 ?>
 
 <!DOCTYPE html>
@@ -91,8 +51,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css  " rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js  "></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>MAPA</title>
     <style>
         html, body {
@@ -199,4 +159,3 @@
     </div>
 </body>
 </html>
-
