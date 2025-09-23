@@ -1,31 +1,68 @@
 <?php
+session_start();
+
 if ($_POST) {
-    $usuario = $_POST['usuario'];
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
-    $celular = $_POST['tel'];
+    // CSRF
+    if (!hash_equals($_SESSION['csrf_token'] ?? '', $_POST['csrf_token'] ?? '')) {
+        header("Location: cadastro.php?erro=csrf_invalido");
+        exit;
+    }
+
+    // Entradas
+    $usuario = trim($_POST['usuario'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $senha = $_POST['senha'] ?? '';
+    $celular = preg_replace('/\D/', '', $_POST['tel'] ?? '');
+
+    // Validações
+    if (empty($usuario) || empty($email) || empty($senha) || empty($celular)) {
+        header("Location: cadastro.php?erro=campos_vazios");
+        exit;
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        header("Location: cadastro.php?erro=email_invalido");
+        exit;
+    }
+
+    if (strlen($senha) < 8) {
+        header("Location: cadastro.php?erro=senha_curta");
+        exit;
+    }
+
+    if (strlen($celular) < 10 || strlen($celular) > 11) {
+        header("Location: cadastro.php?erro=celular_invalido");
+        exit;
+    }
 
     require_once 'conexao.php';
 
-    $usuario = mysqli_real_escape_string($conexao, $usuario);
-    $email = mysqli_real_escape_string($conexao, $email);
-    $celular = mysqli_real_escape_string($conexao, $celular);
+    // Verifica duplicidade
+    $stmt_check = $conexao->prepare("SELECT id FROM usuarios WHERE usuario = ? OR email = ?");
+    $stmt_check->bind_param("ss", $usuario, $email);
+    $stmt_check->execute();
+    $resultado = $stmt_check->get_result();
 
+    if ($resultado->num_rows > 0) {
+        header("Location: cadastro.php?erro=usuario_ou_email_existente");
+        exit;
+    }
+
+    // Insere com prepared statement
     $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
+    $stmt_insert = $conexao->prepare("INSERT INTO usuarios (usuario, senha, email, celular) VALUES (?, ?, ?, ?)");
+    $stmt_insert->bind_param("ssss", $usuario, $senhaCriptografada, $email, $celular);
 
-    $codigoSql = "INSERT INTO usuarios (usuario, senha, email, celular) VALUES ('$usuario', '$senhaCriptografada', '$email', '$celular')";
-    $resultado = mysqli_query($conexao, $codigoSql);
-
-    if ($resultado) {
+    if ($stmt_insert->execute()) {
         $mensagem = "1";
     } else {
         $mensagem = "0";
     }
 
     header("Location: index.php?mensagem=$mensagem");
-    exit(0);
+    exit;
 } else {
-    header("Location: index.php");
-    exit(0);
+    header("Location: cadastro.php");
+    exit;
 }
 ?>
