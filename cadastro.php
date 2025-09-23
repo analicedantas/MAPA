@@ -2,19 +2,16 @@
 session_start();
 
 if ($_POST) {
-    // CSRF
     if (!hash_equals($_SESSION['csrf_token'] ?? '', $_POST['csrf_token'] ?? '')) {
         header("Location: cadastro.php?erro=csrf_invalido");
         exit;
     }
 
-    // Entradas
     $usuario = trim($_POST['usuario'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $senha = $_POST['senha'] ?? '';
     $celular = preg_replace('/\D/', '', $_POST['tel'] ?? '');
 
-    // Validações
     if (empty($usuario) || empty($email) || empty($senha) || empty($celular)) {
         header("Location: cadastro.php?erro=campos_vazios");
         exit;
@@ -37,7 +34,6 @@ if ($_POST) {
 
     require_once 'conexao.php';
 
-    // Verifica duplicidade
     $stmt_check = $conexao->prepare("SELECT id FROM usuarios WHERE usuario = ? OR email = ?");
     $stmt_check->bind_param("ss", $usuario, $email);
     $stmt_check->execute();
@@ -48,7 +44,6 @@ if ($_POST) {
         exit;
     }
 
-    // Insere com prepared statement
     $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
     $stmt_insert = $conexao->prepare("INSERT INTO usuarios (usuario, senha, email, celular) VALUES (?, ?, ?, ?)");
     $stmt_insert->bind_param("ssss", $usuario, $senhaCriptografada, $email, $celular);
