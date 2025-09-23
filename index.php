@@ -62,16 +62,16 @@
             box-shadow: 0 0 5px rgba(0,0,0,0.1);
         }
 
-       .col-12.col-md-6.design-section{
-        color: white;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-       }
+        .col-12.col-md-6.design-section {
+            color: white;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
 
-       .mb-4{
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-       }
+        .mb-4 {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
 
-       .msg-erro {
+        .msg-erro {
             color: #d9534f;
             background-color: #fdf2f2;
             border: 1px solid #eed3d7;
@@ -79,7 +79,12 @@
             border-radius: 5px;
             margin-bottom: 15px;
             font-weight: bold;
-       }
+        }
+
+        .login-section .alert {
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
     </style>
 </head>
 <body>
@@ -91,18 +96,16 @@
             <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
                 <div class="login-section">
 
-                    
-      <?php
-  require_once 'header.php';
-  if (isset($_GET['mensagem'])){
-    if ($_GET['mensagem']) {
-      echo "<h5>Usuário cadastrado com sucesso! <a href='login.php'>Faça login</a></h5>";
-    } else {
-      echo "<h5>Erro ao cadastrar o usuário!</h5>"; 
-    }
-  }
-?>
-
+                    <?php
+                        require_once 'header.php';
+                        if (isset($_GET['mensagem'])) {
+                            if ($_GET['mensagem']) {
+                                echo "<div class='alert alert-success'>Usuário cadastrado com sucesso! <a href='login.php'>Faça login</a></div>";
+                            } else {
+                                echo "<div class='alert alert-danger'>Erro ao cadastrar o usuário!</div>";
+                            }
+                        }
+                    ?>
 
                     <form method="post">
                         <h2 class="mb-4" style="color: rgba(0, 201, 194, 1);">LOGIN</h2>
