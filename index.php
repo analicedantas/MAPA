@@ -42,13 +42,57 @@
   require_once 'header.php';
 ?>
 
+<?php
+  @session_start();
+
+  if (isset($_SESSION['logado']) && $_SESSION['logado'] == '2etapas') {
+    header('Location: 2etapas.php');
+    exit(0);
+  }else if(isset($_SESSION['logado']) && $_SESSION['logado'] == 'logado'){
+    header('Location: perfil.php');
+    exit(0);
+  }else{
+    if ($_POST) {
+      $usuarioQueSeLogou = $_POST['usuario'];
+      $senha = $_POST['senha'];
+
+      require_once 'conexao.php';
+
+      $resultado = mysqli_query($conexao, "SELECT * FROM usuarios WHERE usuario='$usuarioQueSeLogou'");
+
+      if ($resultado) {
+        $usuario = mysqli_fetch_assoc($resultado);
+
+        if ($usuario && password_verify($senha, $usuario['senha'])) {
+
+          $codigo = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'), -4);
+
+          $resultado = mysqli_query($conexao, "UPDATE usuarios SET codigo2etapas='$codigo' WHERE usuario='$usuarioQueSeLogou'");
+
+          if ($resultado) {
+   
+            $_SESSION['logado'] = '2etapas';
+            $_SESSION['usuario'] = $usuario['usuario'];
+
+            header('Location: 2etapas.php');
+            exit(0);
+          }
+        }
+      }
+    }
+  }
+
+
+  require_once 'header.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css  " rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js  "></script>
     <title>MAPA</title>
     <style>
         html, body {
@@ -139,22 +183,10 @@
             </div>
             <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
                 <div class="login-section">
-
-                    <?php
-                        require_once 'header.php';
-                        if (isset($_GET['mensagem'])) {
-                            if ($_GET['mensagem']) {
-                                echo "<div class='alert alert-success'>Usuário cadastrado com sucesso! <a href='login.php'>Faça login</a></div>";
-                            } else {
-                                echo "<div class='alert alert-danger'>Erro ao cadastrar o usuário!</div>";
-                            }
-                        }
-                    ?>
-
                     <form method="post">
                         <h2 class="mb-4" style="color: rgba(0, 201, 194, 1);">LOGIN</h2>
                         <div class="mb-5">
-                            <input type="text" name="email" class="form-control" placeholder="Digite o seu e-mail:" required>
+                            <input type="text" name="usuario" class="form-control" placeholder="Digite o seu usuário:" required>
                         </div>
                         <div class="mb-5">
                             <input type="password" name="senha" class="form-control" placeholder="Digite a sua senha:" required>
@@ -167,3 +199,4 @@
     </div>
 </body>
 </html>
+
