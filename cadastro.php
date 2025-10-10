@@ -11,7 +11,7 @@ if ($_POST) {
     $email = trim($_POST['email'] ?? '');
     $senha = $_POST['senha'] ?? '';
 
-    if (empty($usuario) || empty($email) || empty($senha)) {
+    if (empty($nome) || empty($email) || empty($senha)) {
         header("Location: cadastro.php?erro=campos_vazios");
         exit;
     }
@@ -28,7 +28,7 @@ if ($_POST) {
 
     require_once 'conexao.php';
 
-    $stmt_check = $conexao->prepare("SELECT id FROM usuarios WHERE usuario = ? OR email = ?");
+    $stmt_check = $conexao->prepare("SELECT id FROM usuario WHERE nome = ? OR email = ?");
     $stmt_check->bind_param("ss", $nome, $email);
     $stmt_check->execute();
     $resultado = $stmt_check->get_result();
@@ -40,7 +40,7 @@ if ($_POST) {
 
     $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
 
-    $stmt_insert = $conexao->prepare("INSERT INTO usuarios (usuario, senha, email) VALUES (?, ?, ?)");
+    $stmt_insert = $conexao->prepare("INSERT INTO usuario (nome, senha, email) VALUES (?, ?, ?)");
     $stmt_insert->bind_param("sss", $nome, $senhaCriptografada, $email);
 
     if ($stmt_insert->execute()) {
