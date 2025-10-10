@@ -24,7 +24,6 @@ CREATE TABLE consultas (
     CPF_paciente VARCHAR(11),
     CRM_medico VARCHAR(20),
     status_consulta ENUM('Agendada', 'Realizada', 'Cancelada') DEFAULT 'Agendada',
-    observacoes TEXT,
     FOREIGN KEY (CPF_paciente) REFERENCES paciente(CPF_paciente),
     FOREIGN KEY (CRM_medico) REFERENCES medico(CRM_medico)
 ) DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
