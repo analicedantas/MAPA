@@ -11,17 +11,17 @@ if ($_POST) {
     $email = trim($_POST['email'] ?? '');
     $senha = $_POST['senha'] ?? '';
 
-    if (empty($nome) || empty($email) || empty($senha)) {
+    if (empty($nome_usuario) || empty($email_usuario) || empty($senha_usuario)) {
         header("Location: cadastro.php?erro=campos_vazios");
         exit;
     }
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (!filter_var($email_usuario, FILTER_VALIDATE_EMAIL)) {
         header("Location: cadastro.php?erro=email_invalido");
         exit;
     }
 
-    if (strlen($senha) < 8) {
+    if (strlen($senha_usuario) < 8) {
         header("Location: cadastro.php?erro=senha_fraca");
         exit;
     }
@@ -29,7 +29,7 @@ if ($_POST) {
     require_once 'conexao.php';
 
     $stmt_check = $conexao->prepare("SELECT id FROM usuario WHERE nome = ? OR email = ?");
-    $stmt_check->bind_param("ss", $nome, $email);
+    $stmt_check->bind_param("ss", $nome_usuario, $email_usuario);
     $stmt_check->execute();
     $resultado = $stmt_check->get_result();
 
@@ -38,10 +38,10 @@ if ($_POST) {
         exit;
     }
 
-    $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
+    $senhaCriptografada = password_hash($senha_usuario, PASSWORD_DEFAULT);
 
-    $stmt_insert = $conexao->prepare("INSERT INTO usuario (nome, senha, email) VALUES (?, ?, ?)");
-    $stmt_insert->bind_param("sss", $nome, $senhaCriptografada, $email);
+    $stmt_insert = $conexao->prepare("INSERT INTO usuario (nome_usuario, senha_usuario, email_usuario) VALUES (?, ?, ?)");
+    $stmt_insert->bind_param("sss", $nome_usuario, $senhaCriptografada, $email_usuario);
 
     if ($stmt_insert->execute()) {
         $mensagem = "1"; 
