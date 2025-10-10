@@ -7,7 +7,7 @@ if ($_POST) {
         exit;
     }
 
-    $usuario = trim($_POST['usuario'] ?? '');
+    $nome = trim($_POST['nome'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $senha = $_POST['senha'] ?? '';
 
@@ -22,14 +22,14 @@ if ($_POST) {
     }
 
     if (strlen($senha) < 8) {
-        header("Location: cadastro.php?erro=senha_curta");
+        header("Location: cadastro.php?erro=senha_fraca");
         exit;
     }
 
     require_once 'conexao.php';
 
     $stmt_check = $conexao->prepare("SELECT id FROM usuarios WHERE usuario = ? OR email = ?");
-    $stmt_check->bind_param("ss", $usuario, $email);
+    $stmt_check->bind_param("ss", $nome, $email);
     $stmt_check->execute();
     $resultado = $stmt_check->get_result();
 
@@ -41,7 +41,7 @@ if ($_POST) {
     $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
 
     $stmt_insert = $conexao->prepare("INSERT INTO usuarios (usuario, senha, email) VALUES (?, ?, ?)");
-    $stmt_insert->bind_param("sss", $usuario, $senhaCriptografada, $email);
+    $stmt_insert->bind_param("sss", $nome, $senhaCriptografada, $email);
 
     if ($stmt_insert->execute()) {
         $mensagem = "1"; 
