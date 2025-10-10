@@ -7,9 +7,9 @@ if ($_POST) {
         exit;
     }
 
-    $nome = trim($_POST['nome'] ?? '');
-    $email = trim($_POST['email'] ?? '');
-    $senha = $_POST['senha'] ?? '';
+    $nome = trim($_POST['nome_usuario'] ?? '');
+    $email = trim($_POST['email_usuario'] ?? '');
+    $senha = $_POST['senha_usuario'] ?? '';
 
     if (empty($nome_usuario) || empty($email_usuario) || empty($senha_usuario)) {
         header("Location: cadastro.php?erro=campos_vazios");
