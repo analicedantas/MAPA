@@ -10,9 +10,8 @@ if ($_POST) {
     $usuario = trim($_POST['usuario'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $senha = $_POST['senha'] ?? '';
-    $celular = preg_replace('/\D/', '', $_POST['tel'] ?? '');
 
-    if (empty($usuario) || empty($email) || empty($senha) || empty($celular)) {
+    if (empty($usuario) || empty($email) || empty($senha)) {
         header("Location: cadastro.php?erro=campos_vazios");
         exit;
     }
@@ -24,11 +23,6 @@ if ($_POST) {
 
     if (strlen($senha) < 8) {
         header("Location: cadastro.php?erro=senha_curta");
-        exit;
-    }
-
-    if (strlen($celular) < 10 || strlen($celular) > 11) {
-        header("Location: cadastro.php?erro=celular_invalido");
         exit;
     }
 
@@ -45,13 +39,14 @@ if ($_POST) {
     }
 
     $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
-    $stmt_insert = $conexao->prepare("INSERT INTO usuarios (usuario, senha, email, celular) VALUES (?, ?, ?, ?)");
-    $stmt_insert->bind_param("ssss", $usuario, $senhaCriptografada, $email, $celular);
+
+    $stmt_insert = $conexao->prepare("INSERT INTO usuarios (usuario, senha, email) VALUES (?, ?, ?)");
+    $stmt_insert->bind_param("sss", $usuario, $senhaCriptografada, $email);
 
     if ($stmt_insert->execute()) {
-        $mensagem = "1";
+        $mensagem = "1"; 
     } else {
-        $mensagem = "0";
+        $mensagem = "0"; 
     }
 
     header("Location: index.php?mensagem=$mensagem");
