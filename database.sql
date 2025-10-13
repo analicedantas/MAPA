@@ -27,3 +27,10 @@ CREATE TABLE consultas (
     FOREIGN KEY (CPF_paciente) REFERENCES paciente(CPF_paciente),
     FOREIGN KEY (CRM_medico) REFERENCES medico(CRM_medico)
 ) DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+CREATE TABLE usuario (
+    ID INT PRIMARY KEY AUTO_INCREMENT, 
+    nome_usuario VARCHAR(50),
+    senha_usuario VARCHAR(100), 
+    email_usuario VARCHAR(100)
+) DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
