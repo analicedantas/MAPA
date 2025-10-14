@@ -46,7 +46,7 @@ if ($_POST) {
     if ($stmt_insert->execute()) {
         $mensagem = "1"; 
     } else {
-        $mensagem = "0"; /
+        $mensagem = "0";
     }
 
     header("Location: index.php?mensagem=$mensagem");
