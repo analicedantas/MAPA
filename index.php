@@ -41,7 +41,6 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] == '2etapas') {
     }
 }
 
-// Inclui o header
 require_once 'header.php';
 ?>
 
