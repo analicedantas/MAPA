@@ -1,0 +1,26 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['logado']) || $_SESSION['logado'] != 'logado') {
+    header('Location: index.php');
+    exit;
+}
+
+$usuario = $_SESSION['usuario'];
+?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil do Usuário</title>
+</head>
+<body>
+    <h1>Bem-vindo(a), <?php echo htmlspecialchars($usuario); ?>!</h1>
+    <p>Você concluiu a verificação em duas etapas com sucesso!</p>
+
+    <form method="post" action="sair.php">
+        <button type="submit">Sair</button>
+    </form>
+</body>
+</html>
