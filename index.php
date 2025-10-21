@@ -1,20 +1,18 @@
 <?php
 session_start();
 require_once 'conexaobd.php';
+include 'header.php';
 
 $erro = '';
 
-if (isset($_SESSION['logado']) && $_SESSION['logado'] == '2etapas') {
-    header('Location: 2etapas.php');
-    exit;
-} elseif (isset($_SESSION['logado']) && $_SESSION['logado'] == 'logado') {
-    header('Location: perfil.php');
+if (isset($_SESSION['logado']) && $_SESSION['logado'] == 'logado') {
+    header('Location: agendamento.php'); 
     exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $usuarioQueSeLogou = $_POST['usuario'] ?? '';
-    $senha = $_POST['senha'] ?? '';
+    $usuarioQueSeLogou = trim($_POST['usuario'] ?? '');
+    $senha = trim($_POST['senha'] ?? '');
 
     $usuarioEscapado = mysqli_real_escape_string($conexao, $usuarioQueSeLogou);
 
@@ -27,21 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($usuario) {
         if (password_verify($senha, $usuario['senha_usuario'])) {
-            $codigo = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'), -4);
-
-            $stmt2 = mysqli_prepare($conexao, "UPDATE usuario SET codigo2etapas = ? WHERE nome_usuario = ?");
-            mysqli_stmt_bind_param($stmt2, "ss", $codigo, $usuarioEscapado);
-            $ok = mysqli_stmt_execute($stmt2);
-            mysqli_stmt_close($stmt2);
-
-            if ($ok) {
-                $_SESSION['logado'] = '2etapas';
-                $_SESSION['usuario'] = $usuario['nome_usuario'];
-                header('Location: 2etapas.php');
-                exit;
-            } else {
-                $erro = "Falha ao atualizar código 2 etapas.";
-            }
+            $_SESSION['logado'] = 'logado';
+            $_SESSION['usuario'] = $usuario['nome_usuario'];
+            header('Location: agendamento.php'); 
+            exit;
         } else {
             $erro = "Senha incorreta.";
         }
@@ -53,11 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Login - MAPA</title>
-    <link rel="stylesheet" href="seu_estilo.css">
-</head>
 <body>
 <div class="container-fluid min-vh-100">
     <div class="row g-0 min-vh-100">
