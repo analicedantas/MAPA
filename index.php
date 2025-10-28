@@ -6,7 +6,7 @@ include 'header.php';
 $erro = '';
 
 if (isset($_SESSION['logado']) && $_SESSION['logado'] == 'logado') {
-    header('Location: agendamento.php'); 
+    header('Location: agendar.php'); 
     exit;
 }
 
@@ -27,8 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (password_verify($senha, $usuario['senha_usuario'])) {
             $_SESSION['logado'] = 'logado';
             $_SESSION['usuario'] = $usuario['nome_usuario'];
-            header('Location: agendamento.php'); 
+            $_SESSION['tipo'] = $usuario['tipo_usuario']; 
+            header('Location: agendar.php');
             exit;
+
         } else {
             $erro = "Senha incorreta.";
         }
