@@ -32,5 +32,7 @@ CREATE TABLE usuario (
     ID INT PRIMARY KEY AUTO_INCREMENT, 
     nome_usuario VARCHAR(50),
     senha_usuario VARCHAR(100), 
-    email_usuario VARCHAR(100)
+    email_usuario VARCHAR(100), 
+    codigo2etapas VARCHAR(10), 
+    tipo_usuario VARCHAR(20)
 ) DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
